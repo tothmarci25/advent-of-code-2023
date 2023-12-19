@@ -1,8 +1,10 @@
 export const getTwoDigitNumber = (input: string): number => {
   const convertedLeftInput = convertSpelledOutDigitsLeft(input);
   const convertedRightInput = convertSpelledOutDigitsRight(input);
-  return getFirstDigit(convertedLeftInput) * 10 + getLastDigit(convertedRightInput);
-}
+  return (
+    getFirstDigit(convertedLeftInput) * 10 + getLastDigit(convertedRightInput)
+  );
+};
 
 const getFirstDigit = (input: string): number => {
   let numFromLeft = parseInt(input.at(0)!);
@@ -11,7 +13,7 @@ const getFirstDigit = (input: string): number => {
     numFromLeft = parseInt(input.at(++indexFromLeft)!);
   }
   return numFromLeft;
-}
+};
 
 const getLastDigit = (input: string): number => {
   let numFromRight = parseInt(input.at(-1)!);
@@ -20,7 +22,7 @@ const getLastDigit = (input: string): number => {
     numFromRight = parseInt(input.at(--indexFromRight)!);
   }
   return numFromRight;
-}
+};
 
 export const convertSpelledOutDigitsLeft = (input: string): string => {
   let convertedInput = input;
@@ -33,7 +35,7 @@ export const convertSpelledOutDigitsLeft = (input: string): string => {
     six: '6',
     seven: '7',
     eight: '8',
-    nine: '9'
+    nine: '9',
   };
 
   let currentPrefix = '';
@@ -43,7 +45,7 @@ export const convertSpelledOutDigitsLeft = (input: string): string => {
     for (const [from, to] of Object.entries(mapping)) {
       if (from.startsWith(currentPrefix)) {
         found = true;
-        if (from.length === currentPrefix.length) { 
+        if (from.length === currentPrefix.length) {
           convertedInput = convertedInput.replace(from, to);
           currentPrefix = '';
           break;
@@ -51,11 +53,11 @@ export const convertSpelledOutDigitsLeft = (input: string): string => {
       }
     }
     if (!found) {
-      currentPrefix = currentPrefix.split('').shift()!;
+      currentPrefix = dropFirst(currentPrefix);
     }
   }
   return convertedInput;
-}
+};
 
 export const convertSpelledOutDigitsRight = (input: string): string => {
   let convertedInput = reverse(input);
@@ -68,7 +70,7 @@ export const convertSpelledOutDigitsRight = (input: string): string => {
     six: '6',
     seven: '7',
     eight: '8',
-    nine: '9'
+    nine: '9',
   };
 
   let currentPrefix = '';
@@ -78,7 +80,7 @@ export const convertSpelledOutDigitsRight = (input: string): string => {
     for (const [from, to] of Object.entries(mapping)) {
       if (reverse(from).startsWith(currentPrefix)) {
         found = true;
-        if (from.length === currentPrefix.length) { 
+        if (from.length === currentPrefix.length) {
           convertedInput = convertedInput.replace(reverse(from), to);
           currentPrefix = '';
           break;
@@ -86,12 +88,18 @@ export const convertSpelledOutDigitsRight = (input: string): string => {
       }
     }
     if (!found) {
-      currentPrefix = currentPrefix.split('').shift()!;
+      currentPrefix = dropFirst(currentPrefix);
     }
   }
   return reverse(convertedInput);
-}
+};
 
 function reverse(s: string): string {
   return s.split('').reverse().join('');
+}
+
+function dropFirst(input: string): string {
+  const arr = input.split('');
+  arr.shift();
+  return arr.join('');
 }
