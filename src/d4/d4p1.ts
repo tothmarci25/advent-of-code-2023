@@ -4,7 +4,7 @@ import { getMatches, getParsedNumbers, getWinPoints } from './d4p1.lib';
 
 (async () => {
   const lines = readline.createInterface({
-    input: fs.createReadStream(`${__dirname}/d4.input.txt`),
+    input: fs.createReadStream(`${__dirname}/d4/d4.input.txt`),
   });
 
   let result = 0;

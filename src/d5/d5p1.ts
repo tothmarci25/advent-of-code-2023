@@ -2,7 +2,7 @@ import fs from 'fs';
 import { getNextNumberFromCategoryMap, parseInput } from './d5p1.lib';
 
 (async () => {
-  const conent = fs.readFileSync('src/d5.input.txt');
+  const conent = fs.readFileSync('src/d5/d5.input.txt');
   const parsedInput = parseInput(conent.toString());
 
   const result: number[] = [];

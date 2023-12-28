@@ -4,7 +4,7 @@ import { getTwoDigitNumber } from './d1p1.lib';
 
 (async () => {
   const lines = readline.createInterface({
-    input: fs.createReadStream(`${__dirname}/d1.input.txt`)
+    input: fs.createReadStream(`${__dirname}/d1/d1.input.txt`),
   });
 
   let result = 0;

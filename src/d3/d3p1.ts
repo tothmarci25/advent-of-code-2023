@@ -4,7 +4,7 @@ import { getPartNumbersAndSymbols, sumPartNumbers } from './d3p1.lib';
 
 (async () => {
   const lines = readline.createInterface({
-    input: fs.createReadStream(`${__dirname}/d3.input.txt`),
+    input: fs.createReadStream(`${__dirname}/d3/d3.input.txt`),
   });
 
   let lineIndex = 0;
